@@ -4,7 +4,7 @@
 CREATE DATABASE payroll_service2;
 --uc2
 --Create table for DataBase
-USE payroll_service;
+USE payroll_service2;
 CREATE TABLE Employee_Payroll2(ID int identity(1,1) Primary Key,Name varchar(255),Salary float,StartDate Date);
 SELECT * FROM Employee_Payroll2;
 --uc3
@@ -58,3 +58,15 @@ WHERE Gender = 'M' GROUP BY Gender;
 
 SELECT MAX(Salary) FROM Employee_Payroll2
 WHERE Gender = 'F' GROUP BY Gender;
+
+--COUNT FUNCTION
+
+SELECT COUNT(Salary) FROM Employee_Payroll2
+WHERE Gender = 'M' GROUP BY Gender;
+
+SELECT COUNT(Salary) FROM Employee_Payroll2
+WHERE Gender = 'F' GROUP BY Gender;
+--uc8
+ALTER TABLE Employee_Payroll2 ADD Phone bigint,Address varchar(250),Department varchar(250) not null;
+UPDATE Employee_Payroll2 SET Address='INDIA';
+UPDATE Employee_Payroll2 SET Department='Finance';
