@@ -20,3 +20,9 @@ SELECT * FROM Employee_Payroll2;
 SELECT Name,StartDate FROM Employee_Payroll2 WHERE Name='Rani';
 SELECT * FROM Employee_Payroll2 WHERE StartDate BETWEEN CAST('2018-01-01'
 AS DATE) AND GETDATE();
+
+--uc6
+--Alter the table to add gender column and add data
+ALTER TABLE Employee_Payroll2 ADD Gender char(1); --it first set gender as null then it can be update as follows
+UPDATE Employee_Payroll2 SET Gender='M';
+UPDATE Employee_Payroll2 SET Gender='F' WHERE Name='Rani';
