@@ -90,6 +90,13 @@ Update Employee_Payroll2 set Deduction = '6000' where Department = 'Sales';
 Update Employee_Payroll2 set TaxablePay = null; 
 Update Employee_Payroll2 set IncomeTax = '2000'; 
 Update Employee_Payroll2 set NetPay = (BasicPay-Deduction);
+--uc10 making employee working in multiple department
+INSERT INTO Employee_Payroll2(Name,BasicPay,StartDate,Gender,Phone,Department,Address,TaxablePay,Deduction,IncomeTax)
+ VALUES('Rohit','50000','2018/07/01','M','5454321154','Marketing','Banglore','40000','5000','2000');
+ Update Employee_Payroll2 set NetPay = (BasicPay-Deduction) where Department='Marketing';
+ Update Employee_Payroll2 set TaxablePay='45000' where Name='Rani';
+  Update Employee_Payroll2 set TaxablePay='27000' where Name='Nayan';
+ Update Employee_Payroll2 set TaxablePay='54000' where Department='Sales';
 
 
 
