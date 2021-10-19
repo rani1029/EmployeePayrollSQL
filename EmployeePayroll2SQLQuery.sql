@@ -97,7 +97,34 @@ INSERT INTO Employee_Payroll2(Name,BasicPay,StartDate,Gender,Phone,Department,Ad
  Update Employee_Payroll2 set TaxablePay='45000' where Name='Rani';
   Update Employee_Payroll2 set TaxablePay='27000' where Name='Nayan';
  Update Employee_Payroll2 set TaxablePay='54000' where Department='Sales';
+ select * from Employee_Payroll2 where Name='Rohit';
+
+ --Tables identified in ER diagram
+ --UC-11
+ CREATE TABLE Employee(ID int identity(1,1) Primary Key,Name varchar(255),Gender char(1),Phone bigint,Address varchar(250));
+
+ CREATE TABLE Payroll(EmpID int FOREIGN KEY REFERENCES Employee(ID),BasicPay float,TaxablePay float, Deduction float,IncomeTax float,NetPay float);
+ select * from Payroll;
+
+ CREATE TABLE Company(CompanytID INT IDENTITY(1,1) PRIMARY KEY,
+	CompanyName VARCHAR(255)  NOT NULL);
+
+CREATE TABLE Department(DepartmentID INT IDENTITY(1, 1) PRIMARY KEY,
+DepartmentName VARCHAR(255)  NOT NULL);
+
+ALTER TABLE Employee ADD CompanytID int FOREIGN KEY REFERENCES Company(CompanytID);
 
 
+SELECT * FROM Employee;
 
+ALTER TABLE Company
+ADD FOREIGN KEY (ID) REFERENCES Employee(ID);
+
+
+select * from Department;
+--for many to many relation
+CREATE TABLE EmployeeDepartment(EmpID int FOREIGN KEY REFERENCES Employee(ID),
+DepartmentID int FOREIGN KEY REFERENCES Department(DepartmentID));
+
+select * from EmployeeDepartment;
 
