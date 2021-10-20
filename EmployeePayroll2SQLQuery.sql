@@ -118,7 +118,7 @@ ALTER TABLE Employee ADD CompanytID int FOREIGN KEY REFERENCES Company(CompanytI
 SELECT * FROM Employee;
 
 ALTER TABLE Company
-ADD FOREIGN KEY (ID) REFERENCES Employee(ID);
+ADD empID int  FOREIGN KEY REFERENCES Employee(ID);
 
 
 select * from Department;
@@ -127,4 +127,40 @@ CREATE TABLE EmployeeDepartment(EmpID int FOREIGN KEY REFERENCES Employee(ID),
 DepartmentID int FOREIGN KEY REFERENCES Department(DepartmentID));
 
 select * from EmployeeDepartment;
+--INSERTING VALUES
+
+insert into Employee(Name,Gender,Phone,Address)VALUES('RANI','F',123987564,'DELHI'),('RISHI','M',9655487564,'DELHI'),('SAHIL','M',673987564,'MUMBAI')
+
+UPDATE Employee
+SET Name='JOHN'
+WHERE ID='2';
+UPDATE Employee
+SET Phone=698764329
+WHERE ID='2';
+
+Update Payroll set TaxablePay = (BasicPay-Deduction)WHERE EmpID=3;
+Update payroll set NetPay = (TaxablePay-IncomeTax)WHERE Deduction=2000;
+INSERT INTO Payroll(EmpID,BasicPay,Deduction,IncomeTax)VALUES(3,50000,5000,3000);
+SELECT * FROM Payroll;
+DELETE FROM Payroll WHERE IncomeTax=1000;
+Update Payroll set IncomeTax=2000 WHERE TaxablePay=28000;
+SELECT * FROM Company;
+INSERT INTO Company VALUES('TCS'),('INFOTECH'),('SOFTTECH');
+INSERT INTO Department VALUES('HR'),('FINANCE'),('TECH');
+SELECT * FROM Department;
+INSERT INTO EmployeeDepartment(EmpID,DepartmentID) VALUES(1,1),(2,2),(3,3);
+SELECT * FROM EmployeeDepartment;
+
+--UC-12 REDOING UC-4 RETRIEVE DATA 
+SELECT Name,Gender,Phone,Address, BasicPay,Deduction,IncomeTax,TaxablePay,NetPay,CompanyName,DepartmentName,DepartmentID from Employee e,Payroll p,Company c ,Department d where e.ID=p.EmpID;
+
+select * from Company;
+update Company set empID=3 where CompanyName='SOFTTECH';
+
+--UC-5 DATE RANGE
+Alter table Employee add Startdate date;
+update Employee set Startdate='2020-06-07' where ID=4;
+select * from Employee;
+
+SELECT  BasicPay,Deduction,IncomeTax,TaxablePay,NetPay FROM Payroll P,Employee e WHERE e.Startdate between Cast('2015-01-01' as Date) and GETDATE();
 
